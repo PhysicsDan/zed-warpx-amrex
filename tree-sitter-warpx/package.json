@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Tree-sitter grammar for WarpX input files (AMReX ParmParse format)",
   "license": "MIT",
-  "main": "bindings/node",
   "keywords": ["tree-sitter", "warpx", "amrex", "parmparse"],
   "tree-sitter": [
     {

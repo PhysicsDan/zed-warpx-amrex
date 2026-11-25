@@ -5,13 +5,15 @@ ParmParse `prefix.name = value` format), as a Zed extension.
 
 ## Install
 
-1. Put this `zed-warpx` folder where it can stay (for example `~/zed/zed-warpx`).
-   Zed loads the extension from this folder, so don't move it afterwards.
+1. Clone this repository somewhere it can stay; Zed loads the extension from there:
+   ```sh
+   git clone https://github.com/PhysicsDan/zed-warpx-amrex.git ~/zed/zed-warpx-amrex
+   ```
 2. In Zed, open the command palette (Cmd-Shift-P), run **zed: install dev extension**
-   and choose the `zed-warpx` folder.
-   The first install takes a minute: Zed downloads its WebAssembly compiler
-   (wasi-sdk, about 100 MB, only once) and builds the parser. Git must be
-   installed (on macOS it comes with the Xcode Command Line Tools).
+   and choose the cloned folder.
+   The first install takes a minute: Zed fetches the grammar, downloads its
+   WebAssembly compiler (wasi-sdk, about 100 MB, only once) and builds the parser.
+   Git must be installed (on macOS it comes with the Xcode Command Line Tools).
 3. Open a deck. The language selector in the status bar should say **WarpX**.
 
 Files ending in `.input` or `.inputs`, and files named `inputs`, `inputs_1d`,
@@ -98,9 +100,11 @@ Zed's Extensions page.
   (highlights, outline, brackets, ...).
 - `tree-sitter-warpx/`: the grammar (`grammar.js`, `src/scanner.c`, generated
   `src/parser.c`) with its tests (`tree-sitter test`).
-- `grammars/`: Zed's build folder. It ships with the grammar already checked out
-  so the install needs no setup; Zed writes `grammars/warpx.wasm` there.
-- `rebuild-grammar.sh`: only needed if you change the grammar itself (see the
-  comments in the script).
+- `grammars/`: Zed's build folder (created on install, not committed).
+
+To change the grammar: edit `tree-sitter-warpx/grammar.js` or `src/scanner.c`,
+run `tree-sitter generate --abi 14` and `tree-sitter test` in `tree-sitter-warpx`,
+commit and push, then set `rev` in `extension.toml` to that commit's SHA and click
+**Rebuild** on WarpX in Zed's Extensions page.
 
 To remove the extension, open Zed's Extensions page and uninstall WarpX.
