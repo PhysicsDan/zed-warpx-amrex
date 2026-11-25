@@ -1,0 +1,25 @@
+name = "WarpX"
+grammar = "warpx"
+# Matched against the extension (warpx.2d.input, run.inputs) or the whole
+# file name (inputs, inputs_2d, ...). For other names, see the README.
+path_suffixes = [
+    "input",
+    "inputs",
+    "inputs_1d",
+    "inputs_2d",
+    "inputs_3d",
+    "inputs_rz",
+    "inputs_rcylinder",
+    "inputs_rsphere",
+]
+# `# vim: set ft=warpx:` or `# -*- mode: warpx -*-` in a file also selects it
+modeline_aliases = ["warpx", "amrex", "parmparse"]
+line_comments = ["# "]
+tab_size = 4
+autoclose_before = ")]}"
+brackets = [
+    { start = "(", end = ")", close = true, newline = false },
+    { start = "[", end = "]", close = true, newline = false },
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "\"", end = "\"", close = true, newline = false, not_in = ["string", "comment"] },
+]

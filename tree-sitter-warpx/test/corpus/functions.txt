@@ -1,0 +1,194 @@
+================================================================================
+Parser function with declared arguments
+================================================================================
+
+laser.field_function(X,Y,t) = "E0*exp(-(X/w)**2)
+                               * cos(omega0*t)"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (identifier)
+      (call
+        function: (identifier)
+        (parenthesized_expression
+          (parameter)
+          (identifier))
+        (number))
+      (call
+        function: (identifier)
+        (identifier)
+        (parameter)))))
+
+================================================================================
+Undeclared names stay identifiers
+================================================================================
+
+laser.field_function(X,Y,t) = "x*X"
+diag.species.variables = x z ux
+hist.filter_function(t,x,y,z,ux,uy,uz) = "abs(x*uz - z*ux) < window*abs(uz)"
+hist.type = ParticleHistogram2D
+other.value = x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (identifier)
+      (parameter)))
+  (assignment
+    key: (key
+      (namespace)
+      (namespace)
+      (property))
+    value: (identifier)
+    value: (identifier)
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (call
+        function: (identifier)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter))
+      (identifier)
+      (call
+        function: (identifier)
+        (parameter))))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier)))
+
+================================================================================
+Unquoted function value and attribute definitions
+================================================================================
+
+electrons.density_function(x,y,z) = n0*(z>0)
+carbon.attribute.x_init(x,y,z,ux,uy,uz,t) = "x"
+openpmd_fields.particle_fields.cell_weight(x,y,z,ux,uy,uz) = "1"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (identifier)
+    value: (parenthesized_expression
+      (parameter)
+      (number)))
+  (assignment
+    key: (key
+      (namespace)
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (parameter)))
+  (assignment
+    key: (key
+      (namespace)
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (number))))
+
+================================================================================
+Local variables, comparisons and hashes inside quotes
+================================================================================
+
+f.func(x,y,z) = "r = sqrt(x*x + y*y); if(r <= 1e-6, 1, 0) # not a comment"
+g.v = "a" "b" # comment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property)
+      parameters: (parameters
+        (parameter)
+        (parameter)
+        (parameter)))
+    value: (string
+      (identifier)
+      (call
+        function: (identifier)
+        (parameter)
+        (parameter)
+        (parameter)
+        (parameter))
+      (call
+        function: (identifier)
+        (identifier)
+        (number)
+        (number)
+        (number))
+      (identifier)
+      (identifier)
+      (identifier)))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (string
+      (identifier))
+    value: (string
+      (identifier)))
+  (comment))

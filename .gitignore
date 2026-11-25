@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Zed's build folder: its grammar checkout and the compiled grammars/warpx.wasm
+grammars/
+
+# Tree-sitter build and test output
+*.wasm
+*.so
+*.dylib
+*.dll
+tree-sitter-warpx/build/
+tree-sitter-warpx/node_modules/
+tree-sitter-warpx/log.html

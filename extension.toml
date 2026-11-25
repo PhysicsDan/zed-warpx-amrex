@@ -1,0 +1,14 @@
+id = "warpx"
+name = "WarpX"
+description = "Syntax highlighting and section outline for WarpX input files (AMReX ParmParse format)."
+version = "0.1.0"
+schema_version = 1
+authors = ["WarpX user"]
+
+[grammars.warpx]
+# Zed builds the parser from the copy already checked out in grammars/warpx,
+# so this URL is only used if that folder is missing. After editing
+# tree-sitter-warpx, run ./rebuild-grammar.sh: it commits the change and
+# points these two lines at that folder.
+repository = "file:///path/to/zed-warpx/tree-sitter-warpx"
+rev = "d3e77e7a0b00216b36ee52c3769bd41b99311ede"

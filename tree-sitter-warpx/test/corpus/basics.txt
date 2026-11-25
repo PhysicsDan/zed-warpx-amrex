@@ -1,0 +1,216 @@
+================================================================================
+Simple definitions and comments
+================================================================================
+
+max_step = 100   # integer
+warpx.cfl = 0.99
+geometry.prob_lo = -32.768e-6 -17.152e-6
+algo.current_deposition = esirkepov
+warpx.do_dive_cleaning = 0   # trailing comment
+title = "Three Kingdoms"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (property))
+    value: (number))
+  (comment)
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (number))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number))
+  (comment)
+  (assignment
+    key: (key
+      (property))
+    value: (string
+      (identifier)
+      (identifier))))
+
+================================================================================
+Nested prefixes and empty value
+================================================================================
+
+carbon.foil.injection_style = "NRandomPerCell"
+openpmd_fields.adios2_operator.parameters.compressor = zstd
+foo.bar =
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (namespace)
+      (property))
+    value: (string
+      (identifier)))
+  (assignment
+    key: (key
+      (namespace)
+      (namespace)
+      (namespace)
+      (property))
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property))))
+
+================================================================================
+User constants and expressions
+================================================================================
+
+my_constants.n0 = 1e22
+my_constants.wp = sqrt(n0*q_e**2/(epsilon0*m_e))
+my_constants.aoi = 20*pi/180
+my_constants.tau = "laser_fwhm/sqrt(2*log(2))"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (call
+      function: (identifier)
+      (identifier)
+      (identifier)
+      (number)
+      (parenthesized_expression
+        (identifier)
+        (identifier))))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (identifier)
+    value: (number))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (string
+      (identifier)
+      (call
+        function: (identifier)
+        (number)
+        (call
+          function: (identifier)
+          (number))))))
+
+================================================================================
+Intervals
+================================================================================
+
+diag1.intervals = 0:n_slow:5*nfs, n_slow::10*nfs
+checkpoint.intervals = 10157::10157
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (identifier)
+    value: (number)
+    value: (identifier)
+    value: (identifier)
+    value: (number)
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (number)))
+
+================================================================================
+Line continuation
+================================================================================
+
+geom.prob_hi =  "2*sin(pi/4)/sqrt(2)" \
+                -(sin(pi*3/2)+cos(pi*3/2))
+amr.n_cell = 64 64
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (string
+      (number)
+      (call
+        function: (identifier)
+        (identifier)
+        (number))
+      (call
+        function: (identifier)
+        (number)))
+    (line_continuation)
+    value: (parenthesized_expression
+      (call
+        function: (identifier)
+        (identifier)
+        (number)
+        (number))
+      (call
+        function: (identifier)
+        (identifier)
+        (number)
+        (number))))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (number)))
+
+================================================================================
+Last line without a newline
+================================================================================
+
+a = 1
+b.c = 2
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (property))
+    value: (number))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)))

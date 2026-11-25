@@ -1,0 +1,71 @@
+================================================================================
+Section headers
+================================================================================
+
+# =====================
+# plain comment
+# =====================
+stop_time = 1e-12
+
+# --- GEOMETRY --- #
+geometry.dims = 2
+#----PARTICLE DIAGNOSTIC----#
+
+####### PLASMA #######
+# - a bullet, not a header
+electrons.charge = -q_e
+x.y = 1 # --- not a header either ---
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (comment)
+  (comment)
+  (assignment
+    key: (key
+      (property))
+    value: (number))
+  (section
+    header: (section_header
+      title: (title))
+    (assignment
+      key: (key
+        (namespace)
+        (property))
+      value: (number)))
+  (section
+    header: (section_header
+      title: (title)))
+  (section
+    header: (section_header
+      title: (title))
+    (comment)
+    (assignment
+      key: (key
+        (namespace)
+        (property))
+      value: (identifier))
+    (assignment
+      key: (key
+        (namespace)
+        (property))
+      value: (number))
+    (comment)))
+
+================================================================================
+Header as the last line
+================================================================================
+
+a = 1
+# --- END --- #
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (property))
+    value: (number))
+  (section
+    header: (section_header
+      title: (title))))

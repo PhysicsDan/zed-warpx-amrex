@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "warpx",
+      "camelcase": "Warpx",
+      "title": "WarpX",
+      "scope": "source.warpx",
+      "path": ".",
+      "file-types": [
+        "input",
+        "inputs"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injection-regex": "^(warpx|amrex)$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "WarpX input files (AMReX ParmParse format)",
+    "authors": [
+      {
+        "name": "WarpX user"
+      }
+    ]
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

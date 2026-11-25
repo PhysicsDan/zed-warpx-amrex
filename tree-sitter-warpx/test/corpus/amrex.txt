@@ -1,0 +1,197 @@
+================================================================================
+FILE and UNSET
+================================================================================
+
+FILE = ../common/base.inputs
+FILE = "with space.inputs"
+UNSET = amr.max_level warpx.verbose
+FILES.list = a
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (include
+    (keyword)
+    path: (path))
+  (include
+    (keyword)
+    path: (string
+      (identifier)
+      (identifier)))
+  (unset
+    (keyword)
+    (key_name)
+    (key_name))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier)))
+
+================================================================================
+TOML-like tables and arrays
+================================================================================
+
+[geometry]
+prob_lo = [-1.0, -1.0]
+names = ["a", "b"]
+[warpx.sub]
+cfl = 0.9
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (table_header
+    (namespace))
+  (assignment
+    key: (key
+      (property))
+    value: (array
+      (number)
+      (number)))
+  (assignment
+    key: (key
+      (property))
+    value: (array
+      (string
+        (identifier))
+      (string
+        (identifier))))
+  (table_header
+    (namespace)
+    (namespace))
+  (assignment
+    key: (key
+      (property))
+    value: (number)))
+
+================================================================================
+Multi-line brace tables
+================================================================================
+
+my_2d_table = \
+       # col 1      2
+         {{ 11.0,  12.0 }   # row 1
+          { 21.0,  22.0 } } # row 2
+other_table = # col 1    2
+                {{ 11,  12 }
+                 { 21,  22 } }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (property)))
+  (line_continuation)
+  (comment)
+  (brace_list
+    (brace_list
+      (number)
+      (number))
+    (comment)
+    (brace_list
+      (number)
+      (number)))
+  (comment)
+  (assignment
+    key: (key
+      (property)))
+  (comment)
+  (brace_list
+    (brace_list
+      (number)
+      (number))
+    (brace_list
+      (number)
+      (number))))
+
+================================================================================
+Triple-quoted strings
+================================================================================
+
+doc = """
+first line "quoted"
+second line
+"""
+n = 3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (property))
+    value: (raw_string))
+  (assignment
+    key: (key
+      (property))
+    value: (number)))
+
+================================================================================
+Dimension and GPU conditionals
+================================================================================
+
+#if AMREX_SPACEDIM == 2
+amr.n_cell = 64 64
+#elif (AMREX_SPACEDIM >= 3)
+amr.n_cell = 64 64 64
+#else
+#endif
+#ifdef AMREX_USE_GPU
+#if you want a comment, this is one
+#endif # trailing text makes this a comment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (directive)
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (number))
+  (directive)
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (number)
+    value: (number)
+    value: (number))
+  (directive)
+  (directive)
+  (directive)
+  (comment)
+  (comment))
+
+================================================================================
+Odd values still parse
+================================================================================
+
+amr.restart = diags/checkpoint<step>
+picard.diagnostic_file = ./diags/picard.txt
+unit = 1.5'm
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier)
+    value: (identifier)
+    value: (identifier))
+  (assignment
+    key: (key
+      (namespace)
+      (property))
+    value: (identifier)
+    value: (identifier))
+  (assignment
+    key: (key
+      (property))
+    value: (number)
+    value: (identifier)))
